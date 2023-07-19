@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TerLinkMapper">
+    <insert id="insert" parameterType="com.example.demo.models.TerLinkDto">
+        INSERT INTO busdb.tbl_terlink (tl_Id, tl_depTerId, tl_arrTerId)
+        VALUES (#{tl_Id},#{tl_DepTerId},#{tl_ArrTerId})
+    </insert>
+    <delete id="deleteAll">
+        DELETE FROM busdb.tbl_terlink;
+    </delete>
+    <select id="selectAll" resultType="com.example.demo.models.TerLinkDto">
+        SELECT * FROM busdb.tbl_terlink
+    </select>
+    <select id="getTerLinkById" parameterType="String" resultType="com.example.demo.models.TerLinkDto">
+        SELECT * FROM busdb.tbl_terlink WHERE tl_Id = #{terLinkId}
+    </select>
+</mapper>
