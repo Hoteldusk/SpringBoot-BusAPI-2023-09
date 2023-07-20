@@ -37,8 +37,7 @@ public class SaveDB {
         this.terDriveMapper = terDriveMapper;
         this.terScheduleMapper = terScheduleMapper;
     }
-
-    public void SaveTerDB() throws JSONException {
+    public void saveTerDB() throws JSONException {
         terMapper.deleteAll();
 
         List<TerDto> terList = new ArrayList<>();
@@ -128,7 +127,7 @@ public class SaveDB {
             terMapper.insert(dto);
         }
     }
-    public void SaveTerLinkDB() throws JSONException {
+    public void saveTerLinkDB() throws JSONException {
         terLinkMapper.deleteAll();
 
         List<TerLinkDto> terLinkList = new ArrayList<>();
@@ -170,7 +169,7 @@ public class SaveDB {
             terLinkMapper.insert(dto);
         }
     }
-    public void SaveTerDriveDB() throws JSONException {
+    public void saveTerDriveDB() throws JSONException {
         terDriveMapper.deleteAll();
 
         List<TerLinkDto> test_linkTerList = terLinkMapper.selectAll();
@@ -221,7 +220,7 @@ public class SaveDB {
             terDriveMapper.insert(dto);
         }
     }
-    public void SaveTerScheduleDB() throws JSONException {
+    public void saveTerScheduleDB() throws JSONException {
         terScheduleMapper.deleteAll();
 
         List<TerLinkDto> test_linkTerList = terLinkMapper.selectAll();
@@ -309,4 +308,5 @@ public class SaveDB {
             terScheduleMapper.insert(dto);
         }
     }
+
 }

@@ -13,7 +13,5 @@
     <select id="selectAll" resultType="com.example.demo.models.TerLinkDto">
         SELECT * FROM busdb.tbl_terlink
     </select>
-    <select id="getTerLinkById" parameterType="String" resultType="com.example.demo.models.TerLinkDto">
-        SELECT * FROM busdb.tbl_terlink WHERE tl_Id = #{terLinkId}
-    </select>
+    //getByDepTerId 구현해야됨
 </mapper>

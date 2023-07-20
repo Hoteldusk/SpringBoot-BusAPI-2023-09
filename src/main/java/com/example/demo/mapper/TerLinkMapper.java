@@ -13,5 +13,4 @@ public interface TerLinkMapper {
     public List<TerLinkDto> selectAll();
     public TerDto getTerLinkById(String terLinkId);
     public List<TerLinkDto> getByDepTerID(String depTerId);
-    public List<TerLinkDto> getByArrTerID(String arrTerId);
 }
