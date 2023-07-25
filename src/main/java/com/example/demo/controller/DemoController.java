@@ -25,10 +25,10 @@ public class DemoController {
 
     @GetMapping("/saveDB")
     public String saveDB() throws JSONException {
-        saveDB.SaveTerDB();
-        saveDB.SaveTerLinkDB();
-        saveDB.SaveTerDriveDB();
-        saveDB.SaveTerScheduleDB();
+        saveDB.saveTerDB();
+        saveDB.saveTerLinkDB();
+        saveDB.saveTerDriveDB();
+        saveDB.saveTerScheduleDB();
 
         System.out.println("DB 저장완료");
         

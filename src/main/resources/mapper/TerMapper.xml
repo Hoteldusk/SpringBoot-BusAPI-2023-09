@@ -16,4 +16,7 @@
     <select id="getTerById" parameterType="String" resultType="com.example.demo.models.TerDto">
         SELECT * FROM busdb.tbl_ter WHERE terId = #{terId};
     </select>
+    <select id="getTerByRegion" parameterType="String" resultType="com.example.demo.models.TerDto">
+        SELECT  * FROM busdb.tbl_ter WHERE terRegion = #{terRegion};
+    </select>
 </mapper>

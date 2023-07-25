@@ -11,4 +11,5 @@ public interface TerMapper {
     public void deleteAll();
     public List<TerDto> selectAll();
     public TerDto getTerById(String terId);
+    public List<TerDto> getTerByRegion(String terRegion);
 }

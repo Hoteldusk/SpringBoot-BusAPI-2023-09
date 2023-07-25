@@ -5,6 +5,7 @@ import com.example.demo.mapper.TerDriveMapper;
 import com.example.demo.mapper.TerLinkMapper;
 import com.example.demo.mapper.TerMapper;
 import com.example.demo.mapper.TerScheduleMapper;
+import com.example.demo.models.TerDriveDto;
 import com.example.demo.models.TerDto;
 import com.example.demo.models.TerLinkDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,7 @@ public class LoadDB {
 
     // 출발 드롭다운 데이터 전송
     public List<TerDto> loadDepTerData() {
-        List<TerDto> resultList = new ArrayList<>();
-
-        List<TerLinkDto> terLinkDtoList = terLinkMapper.selectAll();
-        for (TerLinkDto terLinkDto : terLinkDtoList) {
-            TerDto terDto = terMapper.getTerById(terLinkDto.getTl_DepTerId());
-            resultList.add(terDto);
-        }
-        return resultList;
+        return terMapper.getTerByRegion("광주");
     }
 
     // 출발지 선택시 도착지 리스트 데이터 전송
@@ -52,4 +46,8 @@ public class LoadDB {
     }
 
     // 출발지 도착지 드롭다운에서 선택후 시간표 게시판에 데이터 전달
+    public List<TerDriveDto> loadTerDriveData(TerDto depTerDto, TerDto arrTerDto) {
+
+        return null;
+    }
 }
