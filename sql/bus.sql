@@ -42,3 +42,13 @@ desc tbl_terlink;
 -- truncate tbl_terlink;
 -- truncate tbl_terdrive;
 -- truncate tbl_terschedule;
+
+SELECT * FROM busdb.tbl_terlink where tl_depTerId = 3601689 AND tl_arrTerId = 4000077;
+
+SELECT tl_Id, tl_depTerId, tl_arrTerId, terId, terName, terRegion
+FROM tbl_TerLink TL
+         LEFT JOIN tbl_ter T ON T.terId = TL.tl_depTerId
+UNION
+SELECT tl_Id, tl_depTerId, tl_arrTerId, terId, terName, terRegion
+FROM tbl_TerLink TL
+         LEFT JOIN tbl_ter T ON T.terId = TL.tl_arrTerId;

@@ -13,5 +13,10 @@
     <select id="selectAll" resultType="com.example.demo.models.TerLinkDto">
         SELECT * FROM busdb.tbl_terlink
     </select>
-    //getByDepTerId 구현해야됨
+    <select id="getTerLinkByDepTerId" resultType="com.example.demo.models.TerLinkDto">
+        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{DepTerId}
+    </select>
+    <select id="getTerLinkByDepTerIdAndArrTerId" resultType="com.example.demo.models.TerLinkDto">
+        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{DepTerId} AND tl_arrTerId = #{ArrTerId}
+    </select>
 </mapper>

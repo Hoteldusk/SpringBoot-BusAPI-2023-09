@@ -43,6 +43,13 @@ public class LoadDB {
     // 출발지 선택시 도착지 리스트 데이터 전송
     public List<TerDto> loadArrTerData(TerDto depTerDto) {
         List<TerDto> terDtoList = new ArrayList<>();
-
+        List<TerLinkDto> terLinkDtoList = terLinkMapper.getByDepTerID(depTerDto.getTerId());
+        for (TerLinkDto terLinkDto : terLinkDtoList) {
+            TerDto terDto = terMapper.getTerById(terLinkDto.getTl_ArrTerId());
+            terDtoList.add(terDto);
+        }
+        return terDtoList;
     }
+
+    // 출발지 도착지 드롭다운에서 선택후 시간표 게시판에 데이터 전달
 }
