@@ -5,9 +5,7 @@ import com.example.demo.mapper.TerDriveMapper;
 import com.example.demo.mapper.TerLinkMapper;
 import com.example.demo.mapper.TerMapper;
 import com.example.demo.mapper.TerScheduleMapper;
-import com.example.demo.models.TerDriveDto;
-import com.example.demo.models.TerDto;
-import com.example.demo.models.TerLinkDto;
+import com.example.demo.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,13 +29,18 @@ public class LoadDB {
 
     // 출발 드롭다운 데이터 전송
     public List<TerDto> loadDepTerData() {
-        return terMapper.getTerByRegion("광주");
+        List<TerLinkDto> terLinkDtos = terLinkMapper.selectAll();
+        List<TerDto> depTerDtos = new ArrayList<>();
+        for (TerLinkDto terLinkDto: terLinkDtos) {
+            // 출발정류장 반환
+        }
     }
 
     // 출발지 선택시 도착지 리스트 데이터 전송
-    public List<TerDto> loadArrTerData(TerDto depTerDto) {
+    public List<TerDto> loadArrTerData(String depTerId) {
+        TerDto depTerDto = terMapper.getTerById(depTerId);
         List<TerDto> terDtoList = new ArrayList<>();
-        List<TerLinkDto> terLinkDtoList = terLinkMapper.getByDepTerID(depTerDto.getTerId());
+        List<TerLinkDto> terLinkDtoList = terLinkMapper.getTerLinkByDepTerId(depTerDto.getTerId());
         for (TerLinkDto terLinkDto : terLinkDtoList) {
             TerDto terDto = terMapper.getTerById(terLinkDto.getTl_ArrTerId());
             terDtoList.add(terDto);
@@ -46,8 +49,26 @@ public class LoadDB {
     }
 
     // 출발지 도착지 드롭다운에서 선택후 시간표 게시판에 데이터 전달
-    public List<TerDriveDto> loadTerDriveData(TerDto depTerDto, TerDto arrTerDto) {
+    public List<TerScheduleVO> loadTerDriveAndSchedule(String depTerId, String arrTerId) {
+        TerLinkDto terLinkDto = terLinkMapper.getTerLinkByDepTerIdAndArrTerId(depTerId, arrTerId);
+        List<TerDriveDto> terDriveDtoList = terDriveMapper.getTerDriveByTl_Id(terLinkDto.getTl_Id());
+        List<TerScheduleVO> terScheduleVOList = new ArrayList<>();
+        // get by 2id
+        // linkter id 로 db 접근 => list로 받음
+        // 반환
+        for (TerDriveDto terDriveDto : terDriveDtoList) {
+            List<TerScheduleDto> terScheduleDtoList = terScheduleMapper.getTerScheduleByTd_Id(terDriveDto.getTd_ID());
+            TerScheduleVO terScheduleVO = new TerScheduleVO();
 
-        return null;
+            terScheduleVO.setTd_ID(terDriveDto.getTd_ID());
+            terScheduleVO.setTd_TlID(terDriveDto.getTd_TlID());
+            terScheduleVO.setTd_WasteTime(terDriveDto.getTd_WasteTime());
+            terScheduleVO.setTd_Fare(terDriveDto.getTd_Fare());
+            terScheduleVO.setTd_Interval(terDriveDto.getTd_Interval());
+            terScheduleVO.setTd_schedule(terScheduleDtoList);
+
+            terScheduleVOList.add(terScheduleVO);
+        }
+        return terScheduleVOList;
     }
 }

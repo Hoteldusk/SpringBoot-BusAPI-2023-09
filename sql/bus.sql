@@ -52,3 +52,7 @@ UNION
 SELECT tl_Id, tl_depTerId, tl_arrTerId, terId, terName, terRegion
 FROM tbl_TerLink TL
          LEFT JOIN tbl_ter T ON T.terId = TL.tl_arrTerId;
+
+select * from busdb.tbl_terschedule S
+            left join busdb.tbl_terdrive D ON S.tes_TdId = D.td_Id;
+

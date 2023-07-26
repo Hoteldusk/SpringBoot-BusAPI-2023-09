@@ -9,6 +9,6 @@ import java.util.List;
 public interface TerScheduleMapper {
     public void insert(TerScheduleDto terScheduleDto);
     public void deleteAll();
-    public List<TerScheduleDto> selectAll();
     public List<TerScheduleDto> getTerScheduleByTd_Id(String terDriveId);
+
 }

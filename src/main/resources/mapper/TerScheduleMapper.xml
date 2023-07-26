@@ -10,9 +10,6 @@
     <delete id="deleteAll">
         DELETE FROM busdb.tbl_terschedule;
     </delete>
-    <select id="selectAll" resultType="com.example.demo.models.TerScheduleDto">
-        SELECT * FROM busdb.tbl_terschedule
-    </select>
     <select id="getTerScheduleByTl_Id" parameterType="String" resultType="com.example.demo.models.TerScheduleDto">
         SELECT * FROM busdb.tbl_terschedule WHERE tes_TdId = #{terDriveId}
     </select>

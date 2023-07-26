@@ -11,6 +11,6 @@ public interface TerLinkMapper {
     public void insert(TerLinkDto terLinkDto);
     public void deleteAll();
     public List<TerLinkDto> selectAll();
-    public TerDto getTerLinkById(String terLinkId);
-    public List<TerLinkDto> getByDepTerID(String depTerId);
+    public List<TerLinkDto> getTerLinkByDepTerId(String depTerId);
+    public TerLinkDto getTerLinkByDepTerIdAndArrTerId(String depTerId, String arrTerId);
 }
