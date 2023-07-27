@@ -2,6 +2,7 @@ package com.example.demo.dbTest;
 
 import com.example.demo.mapper.TerMapper;
 import com.example.demo.models.TerDto;
+import com.example.demo.models.TerScheduleVO;
 import com.example.demo.service.LoadDB;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,14 @@ public class DBCRUD_TEST {
         for (TerDto terDto:
              terDtoList) {
             System.out.println(terDto);
+        }
+    }
+
+    @Test
+    public void select_TerScheduleVO() {
+        List<TerScheduleVO> terScheduleVOList = loadDB.loadTerDriveAndSchedule("3601699", "3600552");
+        for (TerScheduleVO terScheduleVO : terScheduleVOList) {
+            System.out.println(terScheduleVO);
         }
     }
 }

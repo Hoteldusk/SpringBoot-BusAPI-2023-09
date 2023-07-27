@@ -56,3 +56,4 @@ FROM tbl_TerLink TL
 select * from busdb.tbl_terschedule S
             left join busdb.tbl_terdrive D ON S.tes_TdId = D.td_Id;
 
+SELECT * FROM busdb.tbl_terschedule WHERE tes_TdId = "36016894000077_00";

@@ -14,9 +14,9 @@
         SELECT * FROM busdb.tbl_terlink
     </select>
     <select id="getTerLinkByDepTerId" resultType="com.example.demo.models.TerLinkDto">
-        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{DepTerId}
+        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{depTerId}
     </select>
     <select id="getTerLinkByDepTerIdAndArrTerId" resultType="com.example.demo.models.TerLinkDto">
-        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{DepTerId} AND tl_arrTerId = #{ArrTerId}
+        SELECT * FROM busdb.tbl_terlink where tl_depTerId = #{depTerId} AND tl_arrTerId = #{arrTerId}
     </select>
 </mapper>

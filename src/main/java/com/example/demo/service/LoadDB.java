@@ -6,6 +6,7 @@ import com.example.demo.mapper.TerLinkMapper;
 import com.example.demo.mapper.TerMapper;
 import com.example.demo.mapper.TerScheduleMapper;
 import com.example.demo.models.*;
+import com.example.demo.utils.DeduplicationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,10 @@ public class LoadDB {
         List<TerDto> depTerDtos = new ArrayList<>();
         for (TerLinkDto terLinkDto: terLinkDtos) {
             // 출발정류장 반환
+            TerDto depTerDto = terMapper.getTerById(terLinkDto.getTl_DepTerId());
+            depTerDtos.add(depTerDto);
         }
+        return DeduplicationUtils.removeDuplicates(depTerDtos);
     }
 
     // 출발지 선택시 도착지 리스트 데이터 전송
