@@ -14,14 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 @Service
 public class LoadDB {
-    private LoadAPIData apiData;
     private TerMapper terMapper;
     private TerLinkMapper terLinkMapper;
     private TerDriveMapper terDriveMapper;
     private TerScheduleMapper terScheduleMapper;
     @Autowired
-    public LoadDB(LoadAPIData apiData, TerMapper terMapper, TerLinkMapper terLinkMapper, TerDriveMapper terDriveMapper, TerScheduleMapper terScheduleMapper) {
-        this.apiData = apiData;
+    public LoadDB(TerMapper terMapper, TerLinkMapper terLinkMapper, TerDriveMapper terDriveMapper, TerScheduleMapper terScheduleMapper) {
         this.terMapper = terMapper;
         this.terLinkMapper = terLinkMapper;
         this.terDriveMapper = terDriveMapper;
