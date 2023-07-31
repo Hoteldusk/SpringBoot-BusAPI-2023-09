@@ -41,7 +41,7 @@ CREATE TABLE tbl_bus_user
 desc table tbl_bus_user;
 select * from tbl_bus_user;
 
-insert into tbl_bus_user(bu_id, bu_password, bu_name, bu_tel) VALUES ('test',1234,'testaccount',010-1111-1111);
+insert into tbl_bus_user(bu_id, bu_password, bu_name, bu_tel) VALUES ('test',1234,'testaccount','010-1111-1111');
 
 
 select *
@@ -111,3 +111,19 @@ CREATE VIEW view_terDrive AS
 SELECT td_Id, td_TlId, td_interval, td_wasteTime, td_fare, tes_schedule
 FROM tbl_terdrive
          LEFT JOIN tbl_terschedule ON tes_TdId = td_Id;
+
+select US.s_terminal, US.e_terminal, US.us_stcode, US.us_etcode from tbl_usually US
+    left join tbl_bus_user U on US.us_buid = U.bu_id where U.bu_id = 'test';
+
+create table tbl_usually(
+  s_terminal varchar(30) not null,
+  e_terminal varchar(30) not null,
+  us_stcode varchar(10) not null,
+  us_etcode varchar(10) not null,
+  us_buid varchar(20) not null
+);
+
+insert into tbl_usually(s_terminal, e_terminal, us_stcode, us_etcode, us_buid)
+VALUES ('학동시외버스정류소','대덕공용버스터미널','3601695','4000207','test');
+
+select * from tbl_usually;
