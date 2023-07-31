@@ -69,13 +69,17 @@ FROM busdb.tbl_terlink
 where tl_depTerId = 3601689
   AND tl_arrTerId = 4000077;
 
-SELECT tl_Id, tl_depTerId, tl_arrTerId, terId, terName, terRegion
+# linkTer, ter join
+SELECT tl_Id, tl_depTerId, D.terName AS depTerName, tl_arrTerId, A.terName AS arrTerName
 FROM tbl_TerLink TL
-         LEFT JOIN tbl_ter T ON T.terId = TL.tl_depTerId
-UNION
-SELECT tl_Id, tl_depTerId, tl_arrTerId, terId, terName, terRegion
-FROM tbl_TerLink TL
-         LEFT JOIN tbl_ter T ON T.terId = TL.tl_arrTerId;
+         LEFT JOIN tbl_ter D ON D.terId = TL.tl_depTerId
+         LEFT JOIN tbl_ter A ON A.terId = TL.tl_arrTerId;
+
+#terDrive, terSchedule join
+SELECT td_Id, td_TlId, td_interval, td_wasteTime, td_fare, tes_schedule
+FROM tbl_terdrive
+    LEFT JOIN tbl_terschedule ON tes_TdId = td_Id;
+
 
 select *
 from busdb.tbl_terschedule S
@@ -84,3 +88,26 @@ from busdb.tbl_terschedule S
 SELECT *
 FROM busdb.tbl_terschedule
 WHERE tes_TdId = '36016894000077_00';
+
+CREATE VIEW view_terLink AS
+SELECT tl_Id, tl_depTerId, tl_arrTerId, D.terName AS DepTerName, A.terName AS ArrTerName
+FROM tbl_TerLink TL
+         LEFT JOIN tbl_ter D ON D.terId = TL.tl_depTerId
+         LEFT JOIN tbl_ter A ON A.terId = TL.tl_arrTerId;
+
+select * from view_terlink;
+
+select * from view_terlink where tl_depTerId = '3601689'
+order by ArrTerName;
+
+select * from view_terdrive where td_TlId = '36016954000044'
+order by tes_schedule;
+
+
+desc view_terlink;
+desc view_terdrive;
+
+CREATE VIEW view_terDrive AS
+SELECT td_Id, td_TlId, td_interval, td_wasteTime, td_fare, tes_schedule
+FROM tbl_terdrive
+         LEFT JOIN tbl_terschedule ON tes_TdId = td_Id;
